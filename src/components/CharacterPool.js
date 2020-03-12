@@ -16,7 +16,7 @@ export default class CharacterPool extends React.Component {
 
             {character.map(element => {
               return (
-                <button className="btn btn-outline-danger" onClick={this.props.deleteCharacter}>{element}</button>
+                <button className="btn btn-outline-danger" onClick={this.props.deleteCharacter} value={index}>{element}</button>
               );
             })}
 

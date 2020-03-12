@@ -12,32 +12,32 @@ export default class App extends React.Component {
         displayTerm: '',
         toggleDisplay: 'inline-block',
         alphaArray: [
-            ['Ⱥ', 'Λ', 'Δ'],
-            ['฿', 'Ƀ', 'β'],
+            ['𝔸', 'Λ', 'Δ'],
+            ['𝔹', 'Ƀ', 'β'],
             ['₡', 'ℂ', '∁'],
-            ['ⅅ', 'Ɖ', 'ↁ'],
-            ['ℇ', 'ℰ', 'Ҿ'],
-            ['Ƒ', 'ƒ', 'Ғ'],
-            ['ɠ', '൭', 'Ǥ'],
-            ['Ħ', 'Ԋ', 'Ȟ'],
-            ['Ɨ', 'ϊ', 'ĩ'],
-            ['Ʈ', 'J', 'Ɉ'],
-            ['Ҟ', 'Ϗ', 'Ӄ'],
-            ['Ƚ', 'ƪ', '£'],
-            ['൱', 'ӎ', 'ʍ'],
-            ['Ŋ', 'Ͷ'],
-            ['ϴ', 'Ǿ', 'ȯ'],
-            ['₱', 'Ƿ'],
-            ['Ɋ', 'ʠ', 'Ҩ'],
-            ['Ʀ', 'Я', 'Ѓ'],
-            ['Ϩ', '$', 'ȿ'],
-            ['Ͳ', 'Ƭ', 'Ⱦ'],
-            ['Ȗ', 'Ʉ', 'Ц'],
-            ['Ʋ', 'ұ', 'Ѵ'],
-            ['Ш', '₩', 'Ϣ'],
-            ['Ϫ', 'Ӿ', 'Ӽ'],
-            ['¥', 'Ϋ', 'ɏ'],
-            ['Ɀ', '𐌶', 'Ƶ']
+            ['𝔻', 'Ɖ', 'ↁ'],
+            ['𝔼', 'ℰ', 'Ҿ'],
+            ['𝔽', 'ƒ', 'Ғ'],
+            ['𝔾', '൭', 'Ǥ'],
+            ['ℍ', 'Ԋ', 'Ȟ'],
+            ['𝕀', 'ϊ', 'ĩ'],
+            ['𝕁', 'J', 'Ɉ'],
+            ['𝕂', 'Ϗ', 'Ӄ'],
+            ['𝕃', 'ƪ', '£'],
+            ['𝕄', '൱', 'ʍ'],
+            ['ℕ', 'Ͷ', 'Ƞ '],
+            ['𝕆', 'Ǿ', 'ȯ'],
+            ['ℙ', 'Ƿ', 'ℙ'],
+            ['ℚ', 'Ɋ', 'Ҩ'],
+            ['ℝ', 'Я', 'Ʀ'],
+            ['𝕊', '$', 'ȿ'],
+            ['𝕋', 'Ƭ', 'Ⱦ'],
+            ['𝕌', 'Ʉ', 'Ц'],
+            ['𝕍', 'ұ', 'Ѵ'],
+            ['𝕎', '₩', 'Ϣ'],
+            ['𝕏', 'Ӿ', 'Ӽ'],
+            ['𝕐', 'Ϋ', 'ɏ'],
+            ['ℤ', '𐌶', 'Ƶ']
         ]
     }
 
@@ -69,7 +69,7 @@ export default class App extends React.Component {
     }
     addNewButton = (e) => {
         let tempArray = this.state.alphaArray;
-    
+            //prompt for new character
             let newChar = prompt(`Please add a new character to the ${this.state.alphaArray[e.target.value]} array.`);
             if (newChar != null) {
                 alert(newChar + " was added to " + this.state.alphaArray[e.target.value])
@@ -89,9 +89,14 @@ export default class App extends React.Component {
       }
     }
     deleteCharacter = (e) => {
-      console.log(e.target.innerHTML)
-      let selectedCharacter = e.target.innerHTML;
-      
+      let prevState = this.state.alphaArray;
+      //Get character from the innerHTML of btn and index of array from value
+      let selectedCharacter = prevState[e.target.value].indexOf(e.target.innerHTML);
+      //remove character
+      prevState[e.target.value].splice(selectedCharacter,1)
+      //update state with new array
+      let newState = prevState;
+      this.setState({alphaArray:newState})
     }
     render() {
         return (
