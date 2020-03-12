@@ -10,7 +10,7 @@ export default class App extends React.Component {
     state = {
         term: '',
         displayTerm: '',
-        toggleDisplay: 'none',
+        toggleDisplay: 'inline-block',
         alphaArray: [
             ['Ⱥ', 'Λ', 'Δ'],
             ['฿', 'Ƀ', 'β'],
@@ -23,20 +23,20 @@ export default class App extends React.Component {
             ['Ɨ', 'ϊ', 'ĩ'],
             ['Ʈ', 'J', 'Ɉ'],
             ['Ҟ', 'Ϗ', 'Ӄ'],
-            ['Ƚ', 'ƪ', '£', 'Ļ'],
+            ['Ƚ', 'ƪ', '£'],
             ['൱', 'ӎ', 'ʍ'],
             ['Ŋ', 'Ͷ'],
-            ['ϴ', 'Ơ', 'Ǿ', 'ȯ'],
+            ['ϴ', 'Ǿ', 'ȯ'],
             ['₱', 'Ƿ'],
             ['Ɋ', 'ʠ', 'Ҩ'],
             ['Ʀ', 'Я', 'Ѓ'],
-            ['Ϩ', '$', 'ȿ', 'Տ'],
+            ['Ϩ', '$', 'ȿ'],
             ['Ͳ', 'Ƭ', 'Ⱦ'],
             ['Ȗ', 'Ʉ', 'Ц'],
             ['Ʋ', 'ұ', 'Ѵ'],
-            ['Ŵ', 'Ш', '₩', 'Ϣ'],
-            ['χ', 'Ϫ', 'Ӿ', 'Ӽ'],
-            ['¥', 'Ƴ', 'ұ', 'Ϋ', 'ɏ'],
+            ['Ш', '₩', 'Ϣ'],
+            ['Ϫ', 'Ӿ', 'Ӽ'],
+            ['¥', 'Ϋ', 'ɏ'],
             ['Ɀ', '𐌶', 'Ƶ']
         ]
     }
@@ -67,7 +67,7 @@ export default class App extends React.Component {
             displayTerm: convertedArr.join('')
         })
     }
-    addNew = (e) => {
+    addNewButton = (e) => {
         let tempArray = this.state.alphaArray;
     
             let newChar = prompt(`Please add a new character to the ${this.state.alphaArray[e.target.value]} array.`);
@@ -79,7 +79,7 @@ export default class App extends React.Component {
              
         }
     }
-    hideButton = () => {
+    toggleButton = () => {
       if(this.state.toggleDisplay === 'none'){
         console.log('toggle off')
         this.setState({toggleDisplay: "inline"})
@@ -88,7 +88,11 @@ export default class App extends React.Component {
         this.setState({toggleDisplay: "none"})
       }
     }
-
+    deleteCharacter = (e) => {
+      console.log(e.target.innerHTML)
+      let selectedCharacter = e.target.innerHTML;
+      
+    }
     render() {
         return (
             <div className="container">
@@ -99,9 +103,11 @@ export default class App extends React.Component {
                         <TextInput onInputChange={this.onInputChange} onClick={this.convertButton} btnValue={this.state.term} />
                         <CharacterPool 
                         alphaArray={this.state.alphaArray} 
-                        addNew={this.addNew} 
+                        addNew={this.addNewButton} 
                         toggleDisplay={this.state.toggleDisplay} 
-                        hideButton={this.hideButton}/>
+                        toggleButton={this.toggleButton}
+                        deleteCharacter={this.deleteCharacter}/>
+                        
                     </div>
                 </div>
             </div>

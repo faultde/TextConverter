@@ -16,7 +16,7 @@ export default class CharacterPool extends React.Component {
 
             {character.map(element => {
               return (
-                <button className="btn btn-outline-danger">{element}</button>
+                <button className="btn btn-outline-danger" onClick={this.props.deleteCharacter}>{element}</button>
               );
             })}
 
@@ -41,7 +41,7 @@ export default class CharacterPool extends React.Component {
             Character Pool{" "}
             <button
               className="btn-sm btn-outline-primary float-right"
-              onClick={this.props.hideButton}
+              onClick={this.props.toggleButton}
             >
               Toggle
             </button>
