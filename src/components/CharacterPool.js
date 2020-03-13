@@ -7,7 +7,7 @@ export default class CharacterPool extends React.Component {
     const characters = alphaArray.map((character, index) => {
       return (
         <div className="col-sm-3">
-          <div className="card">
+          <div className="card" style={{display:'inline-block'}}>
             <h5 className="card-header">
               {String.fromCharCode(
                 alphaArray.indexOf(character) + 97
@@ -16,7 +16,15 @@ export default class CharacterPool extends React.Component {
 
             {character.map(element => {
               return (
-                <button className="btn btn-outline-danger" onClick={this.props.deleteCharacter} value={index}>{element}</button>
+                <button
+                  className="btn btn-sm btn-outline-primary"
+                  onClick={this.props.onCharacterClick}
+                  value={index}
+                  style={{width:50, margin:5, fontSize:"2em"}}
+
+                >
+                  {element}
+                </button>
               );
             })}
 
@@ -27,7 +35,7 @@ export default class CharacterPool extends React.Component {
               onClick={this.props.addNew}
               value={alphaArray.indexOf(character)}
             >
-              Add New
+              +
             </button>
           </div>
         </div>
@@ -38,7 +46,7 @@ export default class CharacterPool extends React.Component {
       <div className="container-lg">
         <div className="card" style={{ marginTop: 20, textAlign: "center" }}>
           <h5 className="card-header">
-            Character Pool{" "}
+            Character Pool
             <button
               className="btn-sm btn-outline-primary float-right"
               onClick={this.props.toggleButton}
@@ -46,11 +54,19 @@ export default class CharacterPool extends React.Component {
               Toggle
             </button>
           </h5>
-
+          
           <div
             className="container"
             style={{ padding: 20, display: `${this.props.toggleDisplay}` }}
           >
+          <nav className="navbar navbar-light bg-light">
+            <button className="btn btn-outline-success" type="button">
+              PreSelect
+            </button>
+            <button className="btn btn-outline-danger" onClick={this.props.toggleDelete}>
+              Delete
+            </button>
+          </nav>
             <div className="row">{characters}</div>
           </div>
         </div>

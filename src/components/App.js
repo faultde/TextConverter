@@ -11,6 +11,9 @@ export default class App extends React.Component {
         term: '',
         displayTerm: '',
         toggleDisplay: 'inline-block',
+        randomSelect: true,
+        toggleDelete: false,
+        preSelect: [],
         alphaArray: [
             ['𝔸', 'Λ', 'Δ'],
             ['𝔹', 'Ƀ', 'β'],
@@ -25,7 +28,7 @@ export default class App extends React.Component {
             ['𝕂', 'Ϗ', 'Ӄ'],
             ['𝕃', 'ƪ', '£'],
             ['𝕄', '൱', 'ʍ'],
-            ['ℕ', 'Ͷ', 'Ƞ '],
+            ['ℕ', 'Ͷ', 'Ƞ'],
             ['𝕆', 'Ǿ', 'ȯ'],
             ['ℙ', 'Ƿ', 'ℙ'],
             ['ℚ', 'Ɋ', 'Ҩ'],
@@ -59,8 +62,10 @@ export default class App extends React.Component {
                 } else {
 
                     let letterSelection = this.state.alphaArray[newArr[i].charCodeAt(0) - 97];
+                    if(this.state.randomSelect){
                     let newLetter = letterSelection[Math.floor(Math.random() * letterSelection.length)];
                     convertedArr.push(newLetter);
+                    }
                 }
             }
         this.setState({
@@ -88,7 +93,21 @@ export default class App extends React.Component {
         this.setState({toggleDisplay: "none"})
       }
     }
-    deleteCharacter = (e) => {
+    toggleDelete = () =>{
+      if(!this.state.toggleDelete){
+        this.setState({toggleDelete:true})
+        console.log(this.state.toggleDelete)
+      }else{
+      this.setState({toggleDelete:false})
+      console.log(this.state.toggleDelete)
+      }
+    }
+    onCharacterClick = (e) => {
+
+      //delete character
+      if(this.state.toggleDelete){
+      let deleteConfirm = confirm("Would you like to remove " + e.target.innerHTML)
+      if(deleteConfirm){
       let prevState = this.state.alphaArray;
       //Get character from the innerHTML of btn and index of array from value
       let selectedCharacter = prevState[e.target.value].indexOf(e.target.innerHTML);
@@ -97,6 +116,8 @@ export default class App extends React.Component {
       //update state with new array
       let newState = prevState;
       this.setState({alphaArray:newState})
+      }
+      }
     }
     render() {
         return (
@@ -111,7 +132,8 @@ export default class App extends React.Component {
                         addNew={this.addNewButton} 
                         toggleDisplay={this.state.toggleDisplay} 
                         toggleButton={this.toggleButton}
-                        deleteCharacter={this.deleteCharacter}/>
+                        onCharacterClick={this.onCharacterClick}
+                        toggleDelete = {this.toggleDelete}/>
                         
                     </div>
                 </div>
