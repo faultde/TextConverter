@@ -5,7 +5,7 @@ export default class CharacterPool extends React.Component {
   state ={
     toggleDelete: false,
     toggleSelect: false,
-    toggleDisplay: 'inline-block',
+    toggleDisplay: 'none',
     btnStyleDanger : 'btn-outline-danger',
     btnStyleSuccess: 'btn-outline-success',
     
@@ -27,19 +27,13 @@ export default class CharacterPool extends React.Component {
   toggleSelect = (e) =>{
       if(!this.state.toggleSelect){
         this.setState({toggleSelect:true})
-        console.log(this.state.toggleDelete)
         this.setState({btnStyleSuccess: 'btn-success'})
       }else{
       this.setState({toggleSelect:false})
-      console.log(this.state.toggleSelect)
       this.setState({btnStyleSuccess: 'btn-outline-success'})
       }
     }
     
-  handleMouseEnter = (e) =>{
-
-
-  }
   toggleButton = () => {
       if(this.state.toggleDisplay === 'none'){
         console.log('toggle off')

@@ -1,15 +1,3 @@
-Default state is to randomly pick from alphaArray
-if randomSelect is off
-either convert based on array of preselected characters
-or give exact indexes of characters needed in alphaArray?
-
-toggle button between preselect and randomSelect
-when preselect is active, buttons clicked will be pushed to preselectArray
-one of each character will be necesarry
-
-add delete button
-
-when you click a character
-the method checks if delete or preselect
-
-if preselect change color of button and push to array
+Prevent multiple preselections of same index - done
+delete preSelect array if deleted -pending
+prevent both preselect and delete being active at same time - pending

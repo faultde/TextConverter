@@ -32,10 +32,11 @@ export default class CharacterCard extends React.Component{
                   alphaArray.indexOf(character) + 97
                 ).toUpperCase()}
               </h5>
-              
+              <div>
               {character.map(element => {
                 // Individual Element
                 return (
+                  
                   <button
                     className={`btn btn-sm ${btnStyle}`}
                     onClick={this.props.onCharacterClick}
@@ -47,9 +48,10 @@ export default class CharacterCard extends React.Component{
                   >
                     {element} 
                   </button>
+                  
                 );
               })}
-
+              </div>
               <button
                 href="#"
                 className="btn btn-sm btn-primary"
