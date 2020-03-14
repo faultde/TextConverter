@@ -10,9 +10,7 @@ export default class App extends React.Component {
     state = {
         term: '',
         displayTerm: '',
-        toggleDisplay: 'inline-block',
         randomSelect: true,
-        toggleDelete: false,
         preSelect: [],
         alphaArray: [
             ['𝔸', 'Λ', 'Δ'],
@@ -49,9 +47,9 @@ export default class App extends React.Component {
             term: e.target.value
         })
     }
-    convertButton = () => {
+    convertButton = (e) => {
             convertedArr = [];
-            let str = this.state.term.toLowerCase();
+            let str = e.target.value.toLowerCase();
             let arr = [];
             let newArr = [];
             arr = str.split('');
@@ -84,28 +82,10 @@ export default class App extends React.Component {
              
         }
     }
-    toggleButton = () => {
-      if(this.state.toggleDisplay === 'none'){
-        console.log('toggle off')
-        this.setState({toggleDisplay: "inline"})
-      }else{
-        console.log('toggle on')
-        this.setState({toggleDisplay: "none"})
-      }
-    }
-    toggleDelete = () =>{
-      if(!this.state.toggleDelete){
-        this.setState({toggleDelete:true})
-        console.log(this.state.toggleDelete)
-      }else{
-      this.setState({toggleDelete:false})
-      console.log(this.state.toggleDelete)
-      }
-    }
-    onCharacterClick = (e) => {
 
+    onCharacterClick = (e) => {
       //delete character
-      if(this.state.toggleDelete){
+      if(e.target.hasAttribute('delete')){
       let deleteConfirm = confirm("Would you like to remove " + e.target.innerHTML)
       if(deleteConfirm){
       let prevState = this.state.alphaArray;
@@ -130,10 +110,8 @@ export default class App extends React.Component {
                         <CharacterPool 
                         alphaArray={this.state.alphaArray} 
                         addNew={this.addNewButton} 
-                        toggleDisplay={this.state.toggleDisplay} 
-                        toggleButton={this.toggleButton}
                         onCharacterClick={this.onCharacterClick}
-                        toggleDelete = {this.toggleDelete}/>
+                        />
                         
                     </div>
                 </div>
