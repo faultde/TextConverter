@@ -4,11 +4,18 @@ export default class CharacterCard extends React.Component{
   onEnter = (e) =>{
     if(this.props.toggleDelete){
     e.target.classList.add("btn-outline-danger");
-    e.target.setAttribute('delete',"yes")
+    e.target.setAttribute('delete',"1")
+    }else if( this.props.toggleSelect){
+    e.target.classList.add("btn-outline-success");
+    e.target.setAttribute('select',"1")
     }
   }
   onLeave = (e) =>{
     e.target.classList.remove("btn-outline-danger");
+    e.target.classList.remove("btn-outline-success");
+    e.target.removeAttribute("delete");
+    e.target.removeAttribute("select");
+
   }
 
  
@@ -18,7 +25,7 @@ export default class CharacterCard extends React.Component{
     return (
       alphaArray.map((character, index) => {
         return (
-          <div className="col-sm-2">
+          <div className="col-sm-2" style={{marginTop:15}}>
             <div className="card" style={{display:'inline-block'}}>
               <h5 className="card-header">
                 {String.fromCharCode(

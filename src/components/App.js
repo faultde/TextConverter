@@ -86,18 +86,23 @@ export default class App extends React.Component {
     onCharacterClick = (e) => {
       //delete character
       if(e.target.hasAttribute('delete')){
-      let deleteConfirm = confirm("Would you like to remove " + e.target.innerHTML)
-      if(deleteConfirm){
-      let prevState = this.state.alphaArray;
-      //Get character from the innerHTML of btn and index of array from value
-      let selectedCharacter = prevState[e.target.value].indexOf(e.target.innerHTML);
-      //remove character
-      prevState[e.target.value].splice(selectedCharacter,1)
-      //update state with new array
-      let newState = prevState;
-      this.setState({alphaArray:newState})
-      }
-      }
+        let deleteConfirm = confirm("Would you like to remove " + e.target.innerHTML)
+          if(deleteConfirm){
+            let prevState = this.state.alphaArray;
+            //Get character from the innerHTML of btn and index of array from value
+            let selectedCharacter = prevState[e.target.value].indexOf(e.target.innerHTML);
+            //remove character
+            prevState[e.target.value].splice(selectedCharacter,1)
+            //update state with new array
+            let newState = prevState;
+            this.setState({alphaArray:newState})
+          }
+       }
+    else if(e.target.hasAttribute('select')){
+      console.log('success')
+      e.target.classList.remove("btn-outline-primary");
+      e.target.classList.add("btn-success");
+    }
     }
     render() {
         return (
